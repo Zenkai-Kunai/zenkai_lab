@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZENKAI IoT | FYP Electronics & IoT Support</title>
+
+<meta name="description"
+content="ZENKAI IoT provides electronics, ESP32, Arduino, IoT and FYP prototype technical support.">
+
+<style>
+:root{
+    --bg:#05070a;
+    --bg2:#0a0e13;
+    --card:#0d131a;
+    --text:#f4f7fa;
+    --muted:#9aa7b4;
+    --line:#1c2731;
+    --accent:#00e5ff;
+    --accent2:#00a8ff;
+    --success:#25d366;
+    --radius:18px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(0,229,255,.08),transparent 30%),
+        radial-gradient(circle at 80% 30%,rgba(0,168,255,.06),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(14px);
+    background:rgba(5,7,10,.82);
+    border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--accent);
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#c9d3dc;
+    font-size:14px;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:var(--accent);
+}
+
+.menu-btn{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:88vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:60px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    padding:8px 14px;
+    border:1px solid rgba(0,229,255,.3);
+    background:rgba(0,229,255,.05);
+    color:var(--accent);
+    border-radius:999px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,74px);
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:24px;
+}
+
+.hero h1 span{
+    color:var(--accent);
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:650px;
+    font-size:17px;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px 20px;
+    border-radius:11px;
+    font-weight:bold;
+    font-size:14px;
+    border:1px solid var(--line);
+    transition:.2s;
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:#001015;
+    border-color:var(--accent);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(0,229,255,.18);
+}
+
+.btn-secondary{
+    background:var(--card);
+    color:white;
+}
+
+.btn-secondary:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* ================= TECH BOX ================= */
+
+.tech-box{
+    background:
+        linear-gradient(145deg,rgba(0,229,255,.08),transparent),
+        var(--card);
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:28px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.tech-screen{
+    border:1px solid #20303c;
+    border-radius:15px;
+    padding:22px;
+    background:#060a0e;
+}
+
+.terminal{
+    font-family:monospace;
+    color:#9ef5ff;
+    font-size:13px;
+    line-height:2;
+}
+
+.terminal .green{
+    color:#55f29a;
+}
+
+.terminal .yellow{
+    color:#ffd166;
+}
+
+.tech-lines{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.tech-stat{
+    background:#0c1217;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:13px;
+}
+
+.tech-stat small{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.tech-stat strong{
+    color:var(--accent);
+}
+
+/* ================= SECTION ================= */
+
+section{
+    padding:90px 0;
+}
+
+.section-title{
+    margin-bottom:45px;
+}
+
+.section-title small{
+    color:var(--accent);
+    font-weight:bold;
+    letter-spacing:2px;
+    font-size:11px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-top:8px;
+}
+
+.section-title p{
+    color:var(--muted);
+    max-width:650px;
+    margin-top:10px;
+}
+
+/* ================= SERVICES ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:linear-gradient(145deg,var(--card),var(--bg2));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:25px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#29404d;
+}
+
+.icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,229,255,.08);
+    color:var(--accent);
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:9px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* ================= PRICING ================= */
+
+.pricing{
+    background:rgba(255,255,255,.012);
+}
+
+.price-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.price-card.featured{
+    border-color:rgba(0,229,255,.55);
+    box-shadow:
+        0 0 40px rgba(0,229,255,.07),
+        inset 0 0 30px rgba(0,229,255,.02);
+    transform:translateY(-5px);
+}
+
+.popular{
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size:10px;
+    background:var(--accent);
+    color:#001015;
+    padding:5px 9px;
+    border-radius:999px;
+    font-weight:bold;
+}
+
+.price{
+    margin:18px 0;
+    font-size:35px;
+    font-weight:900;
+}
+
+.price span{
+    color:var(--muted);
+    font-size:13px;
+    font-weight:normal;
+}
+
+.features{
+    list-style:none;
+    margin:22px 0;
+}
+
+.features li{
+    padding:8px 0;
+    color:#c3ced7;
+    font-size:13px;
+}
+
+.features li::before{
+    content:"✓";
+    color:var(--accent);
+    margin-right:9px;
+}
+
+/* ================= PROJECTS ================= */
+
+.project-card{
+    min-height:230px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    background:
+        linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.15)),
+        linear-gradient(135deg,#101c24,#071017);
+}
+
+.project-tag{
+    display:inline-block;
+    width:max-content;
+    color:var(--accent);
+    border:1px solid rgba(0,229,255,.25);
+    padding:4px 8px;
+    border-radius:5px;
+    font-size:10px;
+    margin-bottom:10px;
+}
+
+/* ================= PROCESS ================= */
+
+.process{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.step{
+    position:relative;
+    padding:24px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:var(--card);
+}
+
+.step-number{
+    font-size:30px;
+    font-weight:900;
+    color:var(--accent);
+    margin-bottom:12px;
+}
+
+.step h3{
+    margin-bottom:7px;
+}
+
+.step p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+    align-items:center;
+}
+
+.about-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:30px;
+}
+
+.about p{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.check{
+    margin:12px 0;
+    color:#cbd5dc;
+}
+
+.check span{
+    color:var(--accent);
+    margin-right:8px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:25px;
+}
+
+.contact-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:30px;
+}
+
+.contact-item{
+    padding:17px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.contact-item:last-child{
+    border-bottom:0;
+}
+
+.contact-item small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.contact-item strong{
+    color:white;
+}
+
+form{
+    display:grid;
+    gap:14px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    background:#080d12;
+    color:white;
+    border:1px solid #202c36;
+    padding:13px 14px;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:var(--accent);
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+label{
+    color:#aebac4;
+    font-size:12px;
+    margin-bottom:-7px;
+}
+
+/* ================= FAQ ================= */
+
+.faq{
+    display:grid;
+    gap:12px;
+}
+
+details{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:17px 20px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:bold;
+}
+
+details p{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:12px;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    text-align:center;
+    background:
+        radial-gradient(circle at center,rgba(0,229,255,.1),transparent 55%),
+        var(--card);
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:60px 25px;
+}
+
+.cta h2{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.cta p{
+    color:var(--muted);
+    max-width:600px;
+    margin:0 auto 25px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--success);
+    color:white;
+    font-size:27px;
+    z-index:1000;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:.2s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+    .nav-links{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        background:#070b0f;
+        border-bottom:1px solid var(--line);
+        display:none;
+        flex-direction:column;
+        padding:20px;
+        gap:18px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero-grid,
+    .about,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:70px 0;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .process{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero h1{
+        font-size:46px;
+    }
+
+    .section-title h2{
+        font-size:31px;
+    }
+
+    .price-card.featured{
+        transform:none;
+    }
+}
+
+@media(max-width:520px){
+
+    .process{
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .cta h2{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+<div class="container nav-inner">
+
+    <a href="#home" class="logo">
+        ZENKAI<span>IoT</span>
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="#services">Services</a>
+        </li>
+
+        <li>
+            <a href="#pricing">Packages</a>
+        </li>
+
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+            <a href="#process">Process</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div>
+
+    <div class="badge">
+        ⚡ IoT • Electronics • Embedded Systems
+    </div>
+
+    <h1>
+        Turn Your<br>
+        <span>Idea Into Reality.</span>
+    </h1>
+
+    <p>
+        From electronics prototypes to complete IoT systems,
+        ZENKAI helps transform project ideas into working
+        hardware and software prototypes.
+    </p>
+
+    <div class="buttons">
+
+        <a
+            class="btn btn-primary"
+            href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20have%20an%20IoT%20or%20electronics%20project%20and%20would%20like%20to%20discuss%20it."
+            target="_blank"
+        >
+            💬 WhatsApp Me
+        </a>
+
+        <a
+            class="btn btn-secondary"
+            href="#pricing"
+        >
+            View Packages
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="tech-box">
+
+    <div class="tech-screen">
+
+        <div class="terminal">
+
+            <div>&gt; ZENKAI IoT SYSTEM</div>
+
+            <div>&gt; Initializing hardware...</div>
+
+            <div class="green">
+                &gt; ESP32 ........ OK
+            </div>
+
+            <div class="green">
+                &gt; Sensors ...... OK
+            </div>
+
+            <div class="green">
+                &gt; WiFi ......... CONNECTED
+            </div>
+
+            <div class="yellow">
+                &gt; IoT Dashboard . ONLINE
+            </div>
+
+            <div>
+                &gt; System ready_
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="tech-lines">
+
+        <div class="tech-stat">
+            <small>MICROCONTROLLER</small>
+            <strong>ESP32 / Arduino</strong>
+        </div>
+
+        <div class="tech-stat">
+            <small>CONNECTIVITY</small>
+            <strong>WiFi / MQTT</strong>
+        </div>
+
+        <div class="tech-stat">
+            <small>PLATFORM</small>
+            <strong>IoT / Web</strong>
+        </div>
+
+        <div class="tech-stat">
+            <small>SUPPORT</small>
+            <strong>FYP / Prototype</strong>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section id="services">
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>WHAT I CAN HELP WITH</small>
+
+    <h2>Technical Services</h2>
+
+    <p>
+        Practical electronics and IoT development
+        for FYP projects, prototypes and embedded systems.
+    </p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+    <div class="icon">⚙</div>
+
+    <h3>ESP32 / Arduino</h3>
+
+    <p>
+        Microcontroller programming, GPIO,
+        sensors, modules and communication.
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <div class="icon">📡</div>
+
+    <h3>IoT Systems</h3>
+
+    <p>
+        WiFi, MQTT, Blynk, cloud connectivity,
+        remote monitoring and control.
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <div class="icon">🔌</div>
+
+    <h3>Electronics</h3>
+
+    <p>
+        Sensors, relays, motors, displays,
+        power circuits and hardware integration.
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <div class="icon">🛠</div>
+
+    <h3>Hardware Debugging</h3>
+
+    <p>
+        Troubleshooting wiring, voltage problems,
+        sensors, modules and prototype failures.
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <div class="icon">🖥</div>
+
+    <h3>Web Dashboard</h3>
+
+    <p>
+        Simple responsive dashboards for monitoring
+        and controlling IoT devices.
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <div class="icon">🔧</div>
+
+    <h3>Prototype Assembly</h3>
+
+    <p>
+        Breadboard, wiring, component integration,
+        firmware installation and testing.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PRICING ================= -->
+
+<section class="pricing" id="pricing">
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>FYP & PROTOTYPE PACKAGES</small>
+
+    <h2>Choose Your Package</h2>
+
+    <p>
+        Packages start from RM200. Larger projects are
+        quoted according to complexity, hardware and software requirements.
+    </p>
+
+</div>
+
+
+<div class="grid">
+
+
+<!-- PACKAGE 1 -->
+
+<div class="card price-card">
+
+    <h3>Prototype Support</h3>
+
+    <div class="price">
+        RM200 <span>starting</span>
+    </div>
+
+    <p>
+        For smaller projects or existing prototypes
+        that need technical development and debugging.
+    </p>
+
+    <ul class="features">
+
+        <li>ESP32 / Arduino setup</li>
+
+        <li>Sensor/module integration</li>
+
+        <li>Basic firmware development</li>
+
+        <li>Hardware wiring</li>
+
+        <li>Debugging</li>
+
+        <li>Prototype testing</li>
+
+    </ul>
+
+    <a
+        class="btn btn-secondary"
+        href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20am%20interested%20in%20the%20RM200%2B%20Prototype%20Support%20package."
+        target="_blank"
+    >
+        Ask About This
+    </a>
+
+</div>
+
+
+<!-- PACKAGE 2 -->
+
+<div class="card price-card featured">
+
+    <div class="popular">
+        POPULAR
+    </div>
+
+    <h3>
+        Full FYP Prototype Development
+    </h3>
+
+    <div class="price">
+        RM500 <span>starting</span>
+    </div>
+
+    <p>
+        A complete working prototype package for
+        larger FYP electronics and IoT projects.
+    </p>
+
+    <ul class="features">
+
+        <li>ESP32 / Arduino development</li>
+
+        <li>Custom hardware integration</li>
+
+        <li>Multiple sensors/modules</li>
+
+        <li>Firmware development</li>
+
+        <li>WiFi / IoT functionality</li>
+
+        <li>Basic web/mobile dashboard</li>
+
+        <li>Prototype assembly</li>
+
+        <li>Testing & debugging</li>
+
+        <li>Technical walkthrough</li>
+
+    </ul>
+
+    <a
+        class="btn btn-primary"
+        href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20am%20interested%20in%20the%20RM500%2B%20Full%20FYP%20Prototype%20Development%20package."
+        target="_blank"
+    >
+        Get FYP Quote
+    </a>
+
+</div>
+
+
+<!-- PACKAGE 3 -->
+
+<div class="card price-card">
+
+    <h3>
+        Advanced IoT System
+    </h3>
+
+    <div class="price">
+        RM1,000 <span>starting</span>
+    </div>
+
+    <p>
+        For complex systems requiring multiple
+        devices, dashboards, automation and IoT services.
+    </p>
+
+    <ul class="features">
+
+        <li>Advanced ESP32 / Arduino system</li>
+
+        <li>Multiple hardware modules</li>
+
+        <li>Advanced firmware</li>
+
+        <li>IoT cloud connectivity</li>
+
+        <li>Web dashboard</li>
+
+        <li>Database integration</li>
+
+        <li>Automation features</li>
+
+        <li>System testing</li>
+
+        <li>Technical documentation</li>
+
+    </ul>
+
+    <a
+        class="btn btn-secondary"
+        href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20am interested%20in%20the%20RM1000%2B%20Advanced%20IoT%20System%20package."
+        target="_blank"
+    >
+        Get Custom Quote
+    </a>
+
+</div>
+
+
+</div>
+
+
+<!-- PRICING NOTE -->
+
+<div
+style="
+margin-top:25px;
+padding:20px;
+border:1px solid var(--line);
+border-radius:14px;
+background:#090e13;
+color:#9aa7b4;
+font-size:13px;
+"
+>
+
+<strong style="color:#00e5ff;">
+💡 Project Pricing
+</strong>
+
+<br><br>
+
+Starting prices are estimates.
+Final pricing depends on project complexity,
+number of components, programming requirements,
+dashboard requirements and development time.
+
+<br><br>
+
+<strong style="color:white;">
+Components and special hardware are quoted separately.
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects">
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>EXAMPLE PROJECTS</small>
+
+    <h2>What We Can Build</h2>
+
+    <p>
+        Examples of IoT and electronics systems
+        that can be developed and customized.
+    </p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        SMART AGRICULTURE
+    </span>
+
+    <h3>
+        Smart Plant Monitoring
+    </h3>
+
+    <p>
+        Soil moisture + temperature +
+        automatic water pump + IoT monitoring.
+    </p>
+
+</div>
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        SMART HOME
+    </span>
+
+    <h3>
+        IoT Home Automation
+    </h3>
+
+    <p>
+        ESP32 + sensors + relay control +
+        mobile/web monitoring.
+    </p>
+
+</div>
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        SMART PARKING
+    </span>
+
+    <h3>
+        Smart Parking System
+    </h3>
+
+    <p>
+        Ultrasonic sensors + OLED/display +
+        parking availability monitoring.
+    </p>
+
+</div>
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        SECURITY
+    </span>
+
+    <h3>
+        IoT Security System
+    </h3>
+
+    <p>
+        Motion detection + alarm +
+        notification and remote monitoring.
+    </p>
+
+</div>
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        RFID
+    </span>
+
+    <h3>
+        RFID Attendance
+    </h3>
+
+    <p>
+        RFID reader + ESP32 +
+        database/dashboard integration.
+    </p>
+
+</div>
+
+
+<div class="card project-card">
+
+    <span class="project-tag">
+        INDUSTRIAL IoT
+    </span>
+
+    <h3>
+        Machine Monitoring
+    </h3>
+
+    <p>
+        Sensor monitoring, status indication,
+        data logging and dashboard.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PROCESS ================= -->
+
+<section id="process">
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>HOW IT WORKS</small>
+
+    <h2>Simple Process</h2>
+
+    <p>
+        From project idea to a working prototype.
+    </p>
+
+</div>
+
+
+<div class="process">
+
+
+<div class="step">
+
+    <div class="step-number">
+        01
+    </div>
+
+    <h3>
+        Send Project
+    </h3>
+
+    <p>
+        Send your project idea, requirements,
+        deadline and expected functions.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        02
+    </div>
+
+    <h3>
+        Project Planning
+    </h3>
+
+    <p>
+        We determine hardware, software,
+        system architecture and estimated cost.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        03
+    </div>
+
+    <h3>
+        Development
+    </h3>
+
+    <p>
+        Hardware integration, programming,
+        IoT development and prototype assembly.
+    </p>
+
+</div>
+
+
+<div class="step">
+
+    <div class="step-number">
+        04
+    </div>
+
+    <h3>
+        Testing
+    </h3>
+
+    <p>
+        Test the prototype, troubleshoot problems
+        and verify the required functions.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section>
+
+<div class="container about">
+
+
+<div>
+
+<div class="section-title">
+
+    <small>ABOUT ZENKAI</small>
+
+    <h2>
+        Electronics First.
+    </h2>
+
+</div>
+
+<p>
+    ZENKAI IoT focuses on practical electronics,
+    embedded systems and IoT prototype development.
+</p>
+
+<p>
+    The goal is simple:
+    take an idea from paper and turn it into
+    a functioning electronic system.
+</p>
+
+</div>
+
+
+<div class="about-box">
+
+<div class="check">
+    <span>✓</span>
+    ESP32 / Arduino development
+</div>
+
+<div class="check">
+    <span>✓</span>
+    Sensors & electronic modules
+</div>
+
+<div class="check">
+    <span>✓</span>
+    IoT / WiFi systems
+</div>
+
+<div class="check">
+    <span>✓</span>
+    Hardware troubleshooting
+</div>
+
+<div class="check">
+    <span>✓</span>
+    Prototype assembly
+</div>
+
+<div class="check">
+    <span>✓</span>
+    Web dashboards
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>START YOUR PROJECT</small>
+
+    <h2>
+        Tell Me About Your FYP
+    </h2>
+
+    <p>
+        Send your project requirements and
+        receive a quotation through WhatsApp.
+    </p>
+
+</div>
+
+
+<div class="contact-grid">
+
+
+<div class="contact-box">
+
+    <h3>
+        Contact
+    </h3>
+
+
+    <div class="contact-item">
+
+        <small>
+            WHATSAPP
+        </small>
+
+        <strong>
+            +60 11-1665 3510
+        </strong>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <small>
+            SERVICE AREA
+        </small>
+
+        <strong>
+            Malaysia
+        </strong>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <small>
+            SPECIALIZATION
+        </small>
+
+        <strong>
+            IoT • Electronics • Embedded
+        </strong>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <small>
+            STARTING PACKAGE
+        </small>
+
+        <strong>
+            RM200+
+        </strong>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <small>
+            FULL FYP PROTOTYPE
+        </small>
+
+        <strong>
+            RM500+
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="contact-box">
+
+<form id="contactForm">
+
+
+<label>
+    Your Name
+</label>
+
+<input
+    type="text"
+    id="name"
+    placeholder="Your name"
+    required
+>
+
+
+<label>
+    Institution / College
+</label>
+
+<input
+    type="text"
+    id="institution"
+    placeholder="Example: University / Polytechnic"
+>
+
+
+<label>
+    Project Type
+</label>
+
+<select id="projectType">
+
+    <option value="IoT Project">
+        IoT Project
+    </option>
+
+    <option value="ESP32 / Arduino">
+        ESP32 / Arduino
+    </option>
+
+    <option value="Electronics">
+        Electronics
+    </option>
+
+    <option value="Robotics">
+        Robotics
+    </option>
+
+    <option value="Smart Home">
+        Smart Home
+    </option>
+
+    <option value="Industrial IoT">
+        Industrial IoT
+    </option>
+
+    <option value="Other">
+        Other
+    </option>
+
+</select>
+
+
+<label>
+    Project Title
+</label>
+
+<input
+    type="text"
+    id="title"
+    placeholder="Example: Smart Agriculture System"
+>
+
+
+<label>
+    Deadline
+</label>
+
+<input
+    type="date"
+    id="deadline"
+>
+
+
+<label>
+    Package Interested In
+</label>
+
+<select id="package">
+
+    <option value="Prototype Support - RM200+">
+        Prototype Support — RM200+
+    </option>
+
+    <option value="Full FYP Prototype Development - RM500+">
+        Full FYP Prototype Development — RM500+
+    </option>
+
+    <option value="Advanced IoT System - RM1,000+">
+        Advanced IoT System — RM1,000+
+    </option>
+
+    <option value="Not sure">
+        Not sure yet
+    </option>
+
+</select>
+
+
+<label>
+    Estimated Budget
+</label>
+
+<input
+    type="text"
+    id="budget"
+    placeholder="Example: RM500 - RM1,000"
+>
+
+
+<label>
+    Tell Me About Your Project
+</label>
+
+<textarea
+    id="description"
+    placeholder="Explain what you want to build, required functions, components you already have, etc."
+    required
+></textarea>
+
+
+<button
+    type="submit"
+    class="btn btn-primary"
+    style="border:0;cursor:pointer;"
+>
+    💬 Send FYP Enquiry
+</button>
+
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FAQ ================= -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+    <small>
+        FAQ
+    </small>
+
+    <h2>
+        Frequently Asked Questions
+    </h2>
+
+</div>
+
+
+<div class="faq">
+
+
+<details>
+
+<summary>
+    What does the RM500+ Full FYP Prototype package include?
+</summary>
+
+<p>
+    It can include hardware integration, ESP32/Arduino
+    development, sensors, modules, firmware, IoT connectivity,
+    basic dashboards, prototype assembly, testing and debugging.
+    Final scope depends on the project.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+    Are components included in the package?
+</summary>
+
+<p>
+    Components are normally quoted separately.
+    This allows the project cost to be calculated based on
+    the actual hardware required.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+    Can I use my own components?
+</summary>
+
+<p>
+    Yes. Existing components can be used if they are
+    suitable for the project.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+    Can you help with an existing broken prototype?
+</summary>
+
+<p>
+    Yes. Hardware debugging, firmware troubleshooting,
+    wiring problems and sensor/module issues can be investigated.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+    Can you develop the prototype while I handle my academic work?
+</summary>
+
+<p>
+    Yes. ZENKAI focuses on technical prototyping and development.
+    Students should remain responsible for their own academic
+    documentation, understanding, presentation and submission
+    requirements.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+    How much does a complete project cost?
+</summary>
+
+<p>
+    The RM500+ package is only a starting point.
+    More complex projects involving multiple devices,
+    custom PCBs, databases, advanced dashboards or extensive
+    development may cost RM1,000 or more.
+</p>
+
+</details>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section>
+
+<div class="container">
+
+<div class="cta">
+
+<h2>
+    Got An FYP Idea?
+</h2>
+
+<p>
+    Send your project requirements and let ZENKAI
+    help turn your idea into a working prototype.
+</p>
+
+<a
+    class="btn btn-primary"
+    href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20have%20an%20FYP%20project%20idea%20and%20would%20like%20to%20request%20a%20quotation."
+    target="_blank"
+>
+    💬 Request FYP Quote
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+<div>
+    © 2026 ZENKAI IoT. All rights reserved.
+</div>
+
+<div>
+    Electronics • IoT • Embedded Systems
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/601116653510?text=Hi%20ZENKAI%20IoT,%20I%20would%20like%20to%20ask%20about%20your%20FYP%20prototype%20services."
+    target="_blank"
+    aria-label="WhatsApp"
+>
+    ☎
+</a>
+
+
+<script>
+
+/* ================= MOBILE MENU ================= */
+
+function toggleMenu(){
+
+    const nav =
+        document.getElementById("navLinks");
+
+    nav.classList.toggle("active");
+
+}
+
+
+/* CLOSE MOBILE MENU */
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document
+        .getElementById("navLinks")
+        .classList.remove("active");
+
+    });
+
+});
+
+
+/* ================= WHATSAPP FORM ================= */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    const name =
+        document.getElementById("name")
+        .value.trim();
+
+
+    const institution =
+        document.getElementById("institution")
+        .value.trim();
+
+
+    const projectType =
+        document.getElementById("projectType")
+        .value;
+
+
+    const title =
+        document.getElementById("title")
+        .value.trim();
+
+
+    const deadline =
+        document.getElementById("deadline")
+        .value;
+
+
+    const selectedPackage =
+        document.getElementById("package")
+        .value;
+
+
+    const budget =
+        document.getElementById("budget")
+        .value.trim();
+
+
+    const description =
+        document.getElementById("description")
+        .value.trim();
+
+
+    const message =
+
+`🔧 ZENKAI IoT FYP ENQUIRY
+
+👤 Name:
+${name}
+
+🏫 Institution:
+${institution || "Not provided"}
+
+📡 Project Type:
+${projectType}
+
+📌 Project Title:
+${title || "Not provided"}
+
+📦 Package:
+${selectedPackage}
+
+📅 Deadline:
+${deadline || "Not provided"}
+
+💰 Estimated Budget:
+${budget || "Not provided"}
+
+📝 Project Description:
+${description}
+
+--------------------------------
+Sent from ZENKAI IoT website.
+`;
+
+
+    const whatsappURL =
+        "https://wa.me/601116653510?text="
+        + encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+});
+
+</script>
+
+</body>
+</html>
